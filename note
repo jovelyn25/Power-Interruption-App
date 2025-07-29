@@ -1,0 +1,7 @@
+power_request_app/
+│
+├── app.py                # Python Flask backend
+├── templates/
+│   └── form.html         # Frontend HTML
+├── static/
+│   └── style.css         # CSS styling

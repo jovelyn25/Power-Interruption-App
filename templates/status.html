@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head><title>Request Status</title></head>
+<body>
+  <h1>Status of Request ID {{ pr.id }}</h1>
+  <p><strong>Employee:</strong> {{ pr.employee_name }}</p>
+  <p><strong>Reason:</strong> {{ pr.reason }}</p>
+  <p><strong>Status:</strong> {{ pr.status }}</p>
+  <hr>
+  <h3>Manager Decision:</h3>
+  <p>{{ pr.manager_approval }}<br>Reason: {{ pr.manager_reason }}</p>
+  <h3>General Manager Decision:</h3>
+  <p>{{ pr.general_manager_approval }}<br>Reason: {{ pr.general_manager_reason }}</p>
+</body>
+</html>

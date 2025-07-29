@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>General Manager Approval - Request #{{ req.id }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 8px #ccc;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        select, textarea, input[type="submit"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .flash {
+            padding: 0.75rem 1rem;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>General Manager Approval for Request #{{ req.id }}</h1>
+
+    <p><strong>Employee:</strong> {{ req.employee_name }}</p>
+    <p><strong>Reason:</strong> {{ req.reason }}</p>
+    <p><strong>Date of Outage:</strong> {{ req.outage_date }}</p>
+    <p><strong>Outage Time:</strong> {{ req.outage_time }} hours</p>
+    <p><strong>Affected Area:</strong> {{ req.affected_area }}</p>
+
+    <form method="post">
+        <label for="action">Decision:</label>
+        <select name="action" id="action" required>
+            <option value="">--Select--</option>
+            <option value="approve">Approve</option>
+            <option value="reject">Reject</option>
+        </select>
+
+        <label for="remarks">Remarks (optional):</label>
+        <textarea name="remarks" id="remarks" rows="4" placeholder="Add remarks if rejecting..."></textarea>
+
+        <input type="submit" value="Submit Decision" />
+    </form>
+</body>
+</html>
